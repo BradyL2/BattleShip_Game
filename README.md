@@ -1,7 +1,7 @@
-# CS 457 Project Statement of Work (SOW) & Protocol Specification Template
+# CS 457 Battleship Project Statement of Work (SOW)
 
 **Student Name:** Brady Langerman  
-**Date:** 2004-02-06
+**Date:** 2026-09-20
 **Course:** CS 457 - Computer Networks  
 **Target Server Domain:** `server.langerman.edu`  
 
@@ -19,12 +19,12 @@
 ### 1.1 Game Overview
 - **Chosen Game:** Battleship
 - **Player Capacity:** 2 Players (Simulated via 2 CML Client nodes)
-- **Game Summary:** Battleship is a grid target guessing game. Each player will get one minute to place down all of their battleships and any battleship not placed down by the end of the timer will be randomly placed. The game ends once one player sinks the enemy player's battleships, while still having at least one on their grid be alive. 
+- **Game Summary:** Battleship is a grid target guessing game. Each player will get as much time as they need to place down 5 battleships in their individual grid area. A grid coordinate can only be targeted once. The game ends once all enemy ship coordinates have been targeted.
 
 ### 1.2 Core Game Rules & Win/Draw Conditions
-- **Turn Mechanics:** One player is chosen by random to go first once both players are ready or time expires. The player going first selects a grid coordinate to target and if a battleship is hit, they get to go again. The player continues to go until an enemy battleship isn’t hit. So, once a player misses and doesn’t hit any ship, it is the other player's turn.
-- **Victory Condition:** A win is determined by all enemy battleships being sunk, meaning all enemy grid squares containing a ship have to be hit with a missile. No square on an enemy grid can be selected/targeted twice.
-- **Draw/Tie Condition:** I don’t think a battleship game can result in any tie whatsoever. The game continues until one player still has healthy squares on their grid, and have hit all enemy squares on their grid.
+- **Turn Mechanics:** A player is chosen at random to go first once both players place down their battleships and are ready. The player going first selects a grid coordinate to target and if a battleship is hit, they get to go again. The player continues to target grid coordinates until an enemy battleship isn’t hit. So, once a player misses and doesn’t hit an enemy ship, their turn is over.
+- **Victory Condition:** A win is determined when all enemy battleships are sunk, meaning all enemy grid squares containing a ship or part of a ship have to be hit.
+- **Draw/Tie Condition:** No, battleship can't result in any tie whatsoever. The game is played in an alternating order, so the first player to target and sink all 5 enemy battleships wins the game immedietly.
 
 ---
 
