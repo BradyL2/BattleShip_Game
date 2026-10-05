@@ -27,7 +27,7 @@ SHIP_PLACEMENT --> SHIP_PLACEMENT : invalid PLACE_SHIPS, send ERROR INVALID_PLAC
 
 SHIP_PLACEMENT --> SHIP_PLACEMENT : valid PLACE_SHIPS from one player, broadcast STATE_UPDATE ready
 
-SHIP_PLACEMENT --> PLAYER_TURN : both battlship fleets placed, pick first player at random, broadcast STATE_UPDATE
+SHIP_PLACEMENT --> PLAYER_TURN : both battleship fleets placed, pick first player at random, broadcast STATE_UPDATE
 
 SHIP_PLACEMENT --> GAME_OVER : a player disconnects, opponent wins automatically by forfeit
 
@@ -52,7 +52,7 @@ GAME_OVER --> CLEANUP : send GAME_OVER to both players
 
 CLEANUP --> WAITING_FOR_PLAYERS : sockets are closed, both boards reset for next round
 
-CLEANUP --> [*] : shutsdown server
+CLEANUP --> [*] : shuts down server
 ```
 
 ## 2. State Descriptions
@@ -62,7 +62,7 @@ CLEANUP --> [*] : shutsdown server
 | 'INIT' | initiates TCP socket, binds to the port and calls 'listen()' | Server algorithm just started |
 | 'WAITING_FOR_PLAYERS' | Accepts the first connection and assigns them as 'PLAYER_1' | Lobby has either 0 or 1 players|
 | 'GAME_START' | Each player receives 'GAME_START' with its role and the list of ships to place | Two players are connected |
-| 'SHIP_PLACEMENT' | Validate all battelship placements and broadcasts to players when ready | Each player places down their ship (no time limit) |
+| 'SHIP_PLACEMENT' | Validate all battleship placements and broadcasts to players when ready | Each player places down their ship (no time limit) |
 | 'PLAYER_TURN' | Player sockets are read and only the player who is active may fire | Waiting for a player's MOVE |
 | 'EVALUATE_MOVE' | Validate chosen coordinates, rejects repeated coordinate positions, and marks as HIT, MISS, or SUNK | The move produced from the player is checked |
 | 'CHECK_WIN_DRAW' | Verifies if all 17 enemy battleship coordinates are hit, then decides the next turn | Valid shot is made on an enemy's board |
@@ -89,14 +89,14 @@ CLEANUP --> [*] : shutsdown server
 | 'PLAYER_TURN' | Invalid or unknown message | none | send 'ERROR' | 'PLAYER_TURN' |
 | 'PLAYER_TURN' | 'MOVE' | active player is sender | message forwarded to evaluation | 'EVALUATE_MOVE' |
 | 'PLAYER_TURN' | 'DISCONNECT', EOF, exception, or 120 second timeout | either player | opponent wins by forfeit | 'GAME_OVER' |
-| 'EVALUATE_MOVE' | Invalid coordinates or repeates coordinate | none | send 'ERROR', player tries again | 'PLAYER_TURN' |
+| 'EVALUATE_MOVE' | Invalid coordinates or repeats coordinate | none | send 'ERROR', player tries again | 'PLAYER_TURN' |
 | 'EVALUATE_MOVE' | valid shot | none | mark MISS, HIT, or SUNK | 'CHECK_WIN_DRAW' |
 | 'CHECK_WIN_DRAW' | turn result | HIT or SUNK, enemy battleships still remain | Broadcast 'STATE_UPDATE', same player's turn | 'PLAYER_TURN' |
-| 'CHECK_WIN_DRAW' | shot result | all 17 enemy battleships grid coordinats hit | record winner | 'GAME_OVER' |
+| 'CHECK_WIN_DRAW' | shot result | all 17 enemy battleships grid coordinates hit | record winner | 'GAME_OVER' |
 | 'CHECK_WIN_DRAW' | shot result | MISS | Broadcast 'STATE_UPDATE', next player's turn | 'PLAYER_TURN' |
 | 'GAME_OVER' | result calculated | none | Broadcast 'GAME_OVER' | 'CLEANUP' |
 | 'CLEANUP' | All resources from players are released | Server continues to run | Reset game for next round | WAITING_FOR_PLAYERS |
-| 'CLEANUP' | requested for server to shutdown | none | Close listenting socket | end |
+| 'CLEANUP' | requested for server to shutdown | none | Close listening socket | end |
 
 ## 4. Error handling/edge cases
 - **Valid moves:** A MOVE is deemed valid from an active player if a coordinate on the grid is fired upon. A hit gives the same player another shot, continuing their turn. A miss passes the turn onto the next player. 
@@ -104,17 +104,17 @@ CLEANUP --> [*] : shutsdown server
 - **Out-Of-Turn moves:** Server replies to the sender with 'ERROR NOT_YOUR_TURN' and the state stays 'PLAYER_TURN'. The turn doesn't change.
 - **Invalid placements:** Duplicated, missing, invalid coordinates, or overlapping ships get 'ERROR INVALID_PLACEMENT'. the player gets to resubmit from the 'SHIP_PLACEMENT' state. 
 - **Wrong phase:** PLACE_SHIPS during the game, or a MOVE during placement phase, gets returned with 'ERROR WRONG_PHASE'. 
-- **Malformed payloads:** Missing keys, unkown message types, or invalid JSON format gets ERROR' and then discarded. The connection continues to stay open afterwards.
-- **Third player ties to join:** The running game isn't effected and third player trying to join gets 'ERROR GAME_FULL'
+- **Malformed payloads:** Missing keys, unknown message types, or invalid JSON format gets 'ERROR' and then discarded. The connection continues to stay open afterwards.
+- **Third player tries to join:** The running game isn't effected and third player trying to join gets 'ERROR GAME_FULL'
 - **Graceful disconnect:** A EOF ('recv()' returns 'b""') or a 'DISCONNECT' message after the game starts results in the room changed to 'GAME_OVER' with an outcome of 'FORFEIT' for the opponent.
-- **Abrupt disconnect:** 'ConnectionAbortedError', 'TimeoutError', 'ConnectionResetError', or 'BrokenPipeError' is handles at every send and receive message exactly like a graceful disconnect, so the server continues running and doesn't crash
-- **Disconnected while sending GAME_OVER:** if the remaining player inside the game leavings in the middle of 'GAME_OVER', the server continues to 'CLEANUP'. 
+- **Abrupt disconnect:** 'ConnectionAbortedError', 'TimeoutError', 'ConnectionResetError', or 'BrokenPipeError' is handled at every send and receive message exactly like a graceful disconnect, so the server continues running and doesn't crash
+- **Disconnected while sending GAME_OVER:** if the remaining player inside the game leaves in the middle of 'GAME_OVER', the server continues to 'CLEANUP'. 
 - **Post game reset:** Both players have their board, ship positions, shot history, scores, and boards cleared, and returns to 'WAITING_FOR_PLAYERS', for a new round to start, without having to restart the server
 
 ## 5. Role Assignment and Turn Order
 
 1. Whatever player sends 'CONNECT' first gets assigned as 'PLAYER_1', and the second one that joins becomes 'PLAYER_2'.
-2. The server randomely picks a player to go first, once both players have placed down all of their ships.
+2. The server randomly picks a player to go first, once both players have placed down all of their ships.
 3. A player that hits a battleship grid coordinate or sinks a ship, gets to fire again. If the player misses and hits the water, it is now the opponent's turn.
-4. The server produces a turn value for each player so they know whose turn it is. Server can only decide whos turn it is. The turn value produced for the clients are from the 'turn' field in 'STATE_UPDATE'.
+4. The server produces a turn value for each player so they know whos turn it is. Server can only decide whos turn it is. The turn value produced for the clients are from the 'turn' field in 'STATE_UPDATE'.
 5. The game only ends the moment one player hits all 17 enemy battleship coordinates, or when a player forfeits, so a game never can end in a draw.

@@ -27,7 +27,7 @@ You are writing Python 3 networking code for a CLI Battleship two-player game. F
 - Write in simple syntax, readable code with only comments that are necessary. Do not add any features I did not mention.
 ```
 
-## Prompt 2: Framing and serilization functions
+## Prompt 2: Framing and serialization functions
 ```
 -Using system rules, write a module framing.py with these two functions:
 1. send_message(sock, message: dict) -> None
