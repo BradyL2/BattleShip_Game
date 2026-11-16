@@ -1,0 +1,343 @@
+Battleship Sprint 3 execution log (localhost / 127.0.0.1, port 9101)
+Commands: python3 server.py -p 9101   |   python3 client.py -i localhost -p 9101  (x2: Brady, Alex)
+Each line is prefixed with the process that printed it (SERVER, Brady, Alex).
+
+SERVER | [SERVER] Listening on 0.0.0.0:9101
+SERVER | [FSM] INIT -> WAITING_FOR_PLAYERS
+Brady | Enter your alias (1-16 letters, digits, or _): [INFO] Connected to localhost (127.0.0.1:9101)
+SERVER | [SERVER] Connection from 127.0.0.1:56603
+SERVER | [SERVER] Brady joined as PLAYER_1
+Brady | [LOBBY] Waiting for Player 2...
+Alex | Enter your alias (1-16 letters, digits, or _): [INFO] Connected to localhost (127.0.0.1:9101)
+SERVER | [SERVER] Connection from 127.0.0.1:56604
+SERVER | [SERVER] Alex joined as PLAYER_2
+SERVER | [FSM] WAITING_FOR_PLAYERS -> GAME_START
+SERVER | [FSM] GAME_START -> SHIP_PLACEMENT
+Alex | 
+Alex | [GAME START] You are PLAYER_2 vs Brady
+Alex | [PLACEMENT] Placing your 5 ships randomly...
+Brady | 
+Brady | [GAME START] You are PLAYER_1 vs Alex
+Brady | [PLACEMENT] Placing your 5 ships randomly...
+SERVER | [FSM] SHIP_PLACEMENT -> PLAYER_TURN
+Brady | [PLACEMENT] Ready - PLAYER_1: False, PLAYER_2: True
+Brady | [PLACEMENT] Ready - PLAYER_1: True, PLAYER_2: True
+Brady | 
+Brady | [BATTLE] All ships placed. Battle begins!
+Brady | 
+Brady | YOUR FLEET                 ENEMY WATERS
+Brady |    0 1 2 3 4 5 6 7 8 9       0 1 2 3 4 5 6 7 8 9
+Brady |  0 S S S S S ~ ~ ~ ~ ~     0 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  1 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     1 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  3 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     3 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex | [PLACEMENT] Ready - PLAYER_1: False, PLAYER_2: True
+Alex | [PLACEMENT] Ready - PLAYER_1: True, PLAYER_2: True
+Alex | 
+Alex | [BATTLE] All ships placed. Battle begins!
+Alex | 
+Alex | YOUR FLEET                 ENEMY WATERS
+Alex |    0 1 2 3 4 5 6 7 8 9       0 1 2 3 4 5 6 7 8 9
+Alex |  0 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     0 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  1 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     1 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  3 ~ ~ ~ ~ ~ ~ ~ ~ S ~     3 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  4 ~ ~ ~ ~ ~ ~ ~ ~ S ~     4 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  5 S ~ ~ S S ~ ~ ~ S ~     5 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  6 S ~ S S S ~ ~ ~ ~ ~     6 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  7 S ~ S ~ S ~ ~ ~ ~ ~     7 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  8 S ~ S ~ S ~ ~ ~ ~ ~     8 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  9 ~ ~ ~ ~ S ~ ~ ~ ~ ~     9 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex | Legend: S your ship, X hit, o miss, ~ water
+Alex | Score  You: 0  Brady: 0   Ships left  You: 5  Brady: 5
+Alex | >>> Your Turn: enter 'row col' (example: 3 4), or 'quit' to forfeit
+Brady |  4 ~ ~ ~ ~ S ~ ~ S ~ ~     4 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  5 ~ ~ S S S ~ ~ S ~ ~     5 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  6 ~ ~ ~ ~ S ~ ~ S ~ ~     6 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  7 ~ ~ ~ ~ S S ~ ~ ~ ~     7 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  8 ~ ~ ~ ~ ~ S ~ ~ ~ ~     8 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  9 ~ ~ ~ ~ ~ S ~ ~ ~ ~     9 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady | Legend: S your ship, X hit, o miss, ~ water
+Brady | Score  You: 0  Alex: 0   Ships left  You: 5  Alex: 5
+Brady | ... Waiting for Alex (PLAYER_2) to fire...
+SERVER | [FSM] PLAYER_TURN -> EVALUATE_MOVE
+SERVER | [FSM] EVALUATE_MOVE -> PLAYER_TURN
+Brady | [ERROR NOT_YOUR_TURN] It is PLAYER_2's turn
+Brady | 
+Brady | [SHOT] Alex fired at (0, 0): HIT
+Alex | 
+Alex | [SHOT] You fired at (0, 0): HIT
+Alex | 
+Alex | YOUR FLEET                 ENEMY WATERS
+Alex |    0 1 2 3 4 5 6 7 8 9       0 1 2 3 4 5 6 7 8 9
+Alex |  0 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     0 X ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  1 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     1 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  3 ~ ~ ~ ~ ~ ~ ~ ~ S ~     3 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady | 
+Brady | YOUR FLEET                 ENEMY WATERS
+Brady |    0 1 2 3 4 5 6 7 8 9       0 1 2 3 4 5 6 7 8 9
+Brady |  0 X S S S S ~ ~ ~ ~ ~     0 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  1 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     1 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  3 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     3 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  4 ~ ~ ~ ~ S ~ ~ S ~ ~     4 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  5 ~ ~ S S S ~ ~ S ~ ~     5 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  6 ~ ~ ~ ~ S ~ ~ S ~ ~     6 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  7 ~ ~ ~ ~ S S ~ ~ ~ ~     7 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  8 ~ ~ ~ ~ ~ S ~ ~ ~ ~     8 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  9 ~ ~ ~ ~ ~ S ~ ~ ~ ~     9 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady | Legend: S your ship, X hit, o miss, ~ water
+Brady | Score  You: 0  Alex: 1   Ships left  You: 5  Alex: 5
+Brady | ... Waiting for Alex (PLAYER_2) to fire...
+Alex |  4 ~ ~ ~ ~ ~ ~ ~ ~ S ~     4 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  5 S ~ ~ S S ~ ~ ~ S ~     5 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  6 S ~ S S S ~ ~ ~ ~ ~     6 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  7 S ~ S ~ S ~ ~ ~ ~ ~     7 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  8 S ~ S ~ S ~ ~ ~ ~ ~     8 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  9 ~ ~ ~ ~ S ~ ~ ~ ~ ~     9 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex | Legend: S your ship, X hit, o miss, ~ water
+Alex | Score  You: 1  Brady: 0   Ships left  You: 5  Brady: 5
+Alex | >>> Your Turn: enter 'row col' (example: 3 4), or 'quit' to forfeit
+SERVER | [FSM] PLAYER_TURN -> EVALUATE_MOVE
+SERVER | [FSM] EVALUATE_MOVE -> PLAYER_TURN
+Alex | 
+Alex | [SHOT] You fired at (0, 1): HIT
+Alex | 
+Alex | YOUR FLEET                 ENEMY WATERS
+Alex |    0 1 2 3 4 5 6 7 8 9       0 1 2 3 4 5 6 7 8 9
+Alex |  0 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     0 X X ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  1 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     1 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  3 ~ ~ ~ ~ ~ ~ ~ ~ S ~     3 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  4 ~ ~ ~ ~ ~ ~ ~ ~ S ~     4 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  5 S ~ ~ S S ~ ~ ~ S ~     5 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  6 S ~ S S S ~ ~ ~ ~ ~     6 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  7 S ~ S ~ S ~ ~ ~ ~ ~     7 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  8 S ~ S ~ S ~ ~ ~ ~ ~     8 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  9 ~ ~ ~ ~ S ~ ~ ~ ~ ~     9 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex | Legend: S your ship, X hit, o miss, ~ water
+Alex | Score  You: 2  Brady: 0   Ships left  You: 5  Brady: 5
+Alex | >>> Your Turn: enter 'row col' (example: 3 4), or 'quit' to forfeit
+Brady | 
+Brady | [SHOT] Alex fired at (0, 1): HIT
+Brady | 
+Brady | YOUR FLEET                 ENEMY WATERS
+Brady |    0 1 2 3 4 5 6 7 8 9       0 1 2 3 4 5 6 7 8 9
+Brady |  0 X X S S S ~ ~ ~ ~ ~     0 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  1 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     1 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  3 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     3 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  4 ~ ~ ~ ~ S ~ ~ S ~ ~     4 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  5 ~ ~ S S S ~ ~ S ~ ~     5 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  6 ~ ~ ~ ~ S ~ ~ S ~ ~     6 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  7 ~ ~ ~ ~ S S ~ ~ ~ ~     7 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  8 ~ ~ ~ ~ ~ S ~ ~ ~ ~     8 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  9 ~ ~ ~ ~ ~ S ~ ~ ~ ~     9 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady | Legend: S your ship, X hit, o miss, ~ water
+Brady | Score  You: 0  Alex: 2   Ships left  You: 5  Alex: 5
+Brady | ... Waiting for Alex (PLAYER_2) to fire...
+SERVER | [FSM] PLAYER_TURN -> EVALUATE_MOVE
+SERVER | [FSM] EVALUATE_MOVE -> PLAYER_TURN
+Brady | 
+Brady | [SHOT] Alex fired at (0, 2): HIT
+Brady | 
+Brady | YOUR FLEET                 ENEMY WATERS
+Brady |    0 1 2 3 4 5 6 7 8 9       0 1 2 3 4 5 6 7 8 9
+Brady |  0 X X X S S ~ ~ ~ ~ ~     0 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  1 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     1 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex | 
+Alex | [SHOT] You fired at (0, 2): HIT
+Alex | 
+Alex | YOUR FLEET                 ENEMY WATERS
+Alex |    0 1 2 3 4 5 6 7 8 9       0 1 2 3 4 5 6 7 8 9
+Alex |  0 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     0 X X X ~ ~ ~ ~ ~ ~ ~
+Alex |  1 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     1 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  3 ~ ~ ~ ~ ~ ~ ~ ~ S ~     3 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  4 ~ ~ ~ ~ ~ ~ ~ ~ S ~     4 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  5 S ~ ~ S S ~ ~ ~ S ~     5 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  6 S ~ S S S ~ ~ ~ ~ ~     6 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  3 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     3 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  4 ~ ~ ~ ~ S ~ ~ S ~ ~     4 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  5 ~ ~ S S S ~ ~ S ~ ~     5 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  6 ~ ~ ~ ~ S ~ ~ S ~ ~     6 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  7 ~ ~ ~ ~ S S ~ ~ ~ ~     7 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  8 ~ ~ ~ ~ ~ S ~ ~ ~ ~     8 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  9 ~ ~ ~ ~ ~ S ~ ~ ~ ~     9 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady | Legend: S your ship, X hit, o miss, ~ water
+Brady | Score  You: 0  Alex: 3   Ships left  You: 5  Alex: 5
+Brady | ... Waiting for Alex (PLAYER_2) to fire...
+Alex |  7 S ~ S ~ S ~ ~ ~ ~ ~     7 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  8 S ~ S ~ S ~ ~ ~ ~ ~     8 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  9 ~ ~ ~ ~ S ~ ~ ~ ~ ~     9 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex | Legend: S your ship, X hit, o miss, ~ water
+Alex | Score  You: 3  Brady: 0   Ships left  You: 5  Brady: 5
+Alex | >>> Your Turn: enter 'row col' (example: 3 4), or 'quit' to forfeit
+Alex | [ERROR ALREADY_FIRED] (0, 0) was already fired at
+Alex | >>> Your Turn: enter 'row col' (example: 3 4), or 'quit' to forfeit
+SERVER | [FSM] PLAYER_TURN -> EVALUATE_MOVE
+SERVER | [FSM] EVALUATE_MOVE -> PLAYER_TURN
+Brady | 
+Brady | [SHOT] Alex fired at (0, 3): HIT
+Brady | 
+Brady | YOUR FLEET                 ENEMY WATERS
+Brady |    0 1 2 3 4 5 6 7 8 9       0 1 2 3 4 5 6 7 8 9
+Brady |  0 X X X X S ~ ~ ~ ~ ~     0 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  1 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     1 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex | 
+Alex | [SHOT] You fired at (0, 3): HIT
+Alex | 
+Alex | YOUR FLEET                 ENEMY WATERS
+Alex |    0 1 2 3 4 5 6 7 8 9       0 1 2 3 4 5 6 7 8 9
+Alex |  0 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     0 X X X X ~ ~ ~ ~ ~ ~
+Alex |  1 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     1 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  3 ~ ~ ~ ~ ~ ~ ~ ~ S ~     3 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  4 ~ ~ ~ ~ ~ ~ ~ ~ S ~     4 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  5 S ~ ~ S S ~ ~ ~ S ~     5 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  6 S ~ S S S ~ ~ ~ ~ ~     6 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  7 S ~ S ~ S ~ ~ ~ ~ ~     7 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  3 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     3 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  4 ~ ~ ~ ~ S ~ ~ S ~ ~     4 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  5 ~ ~ S S S ~ ~ S ~ ~     5 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  6 ~ ~ ~ ~ S ~ ~ S ~ ~     6 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  7 ~ ~ ~ ~ S S ~ ~ ~ ~     7 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  8 ~ ~ ~ ~ ~ S ~ ~ ~ ~     8 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  9 ~ ~ ~ ~ ~ S ~ ~ ~ ~     9 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady | Legend: S your ship, X hit, o miss, ~ water
+Brady | Score  You: 0  Alex: 4   Ships left  You: 5  Alex: 5
+Brady | ... Waiting for Alex (PLAYER_2) to fire...
+Alex |  8 S ~ S ~ S ~ ~ ~ ~ ~     8 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  9 ~ ~ ~ ~ S ~ ~ ~ ~ ~     9 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex | Legend: S your ship, X hit, o miss, ~ water
+Alex | Score  You: 4  Brady: 0   Ships left  You: 5  Brady: 5
+Alex | >>> Your Turn: enter 'row col' (example: 3 4), or 'quit' to forfeit
+SERVER | [FSM] PLAYER_TURN -> EVALUATE_MOVE
+SERVER | [FSM] EVALUATE_MOVE -> PLAYER_TURN
+Alex | 
+Alex | [SHOT] You fired at (0, 4): SUNK - Carrier sunk!
+Alex | 
+Alex | YOUR FLEET                 ENEMY WATERS
+Alex |    0 1 2 3 4 5 6 7 8 9       0 1 2 3 4 5 6 7 8 9
+Alex |  0 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     0 X X X X X ~ ~ ~ ~ ~
+Alex |  1 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     1 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  3 ~ ~ ~ ~ ~ ~ ~ ~ S ~     3 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  4 ~ ~ ~ ~ ~ ~ ~ ~ S ~     4 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  5 S ~ ~ S S ~ ~ ~ S ~     5 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady | 
+Brady | [SHOT] Alex fired at (0, 4): SUNK - Carrier sunk!
+Alex |  6 S ~ S S S ~ ~ ~ ~ ~     6 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  7 S ~ S ~ S ~ ~ ~ ~ ~     7 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  8 S ~ S ~ S ~ ~ ~ ~ ~     8 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  9 ~ ~ ~ ~ S ~ ~ ~ ~ ~     9 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex | Legend: S your ship, X hit, o miss, ~ water
+Alex | Score  You: 5  Brady: 0   Ships left  You: 5  Brady: 4
+Alex | >>> Your Turn: enter 'row col' (example: 3 4), or 'quit' to forfeit
+Brady | 
+Brady | YOUR FLEET                 ENEMY WATERS
+Brady |    0 1 2 3 4 5 6 7 8 9       0 1 2 3 4 5 6 7 8 9
+Brady |  0 X X X X X ~ ~ ~ ~ ~     0 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  1 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     1 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  3 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     3 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  4 ~ ~ ~ ~ S ~ ~ S ~ ~     4 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  5 ~ ~ S S S ~ ~ S ~ ~     5 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  6 ~ ~ ~ ~ S ~ ~ S ~ ~     6 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  7 ~ ~ ~ ~ S S ~ ~ ~ ~     7 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  8 ~ ~ ~ ~ ~ S ~ ~ ~ ~     8 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  9 ~ ~ ~ ~ ~ S ~ ~ ~ ~     9 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady | Legend: S your ship, X hit, o miss, ~ water
+Brady | Score  You: 0  Alex: 5   Ships left  You: 4  Alex: 5
+Brady | ... Waiting for Alex (PLAYER_2) to fire...
+SERVER | [FSM] PLAYER_TURN -> EVALUATE_MOVE
+SERVER | [FSM] EVALUATE_MOVE -> PLAYER_TURN
+Brady | 
+Brady | [SHOT] Alex fired at (0, 5): MISS
+Brady | 
+Brady | YOUR FLEET                 ENEMY WATERS
+Brady |    0 1 2 3 4 5 6 7 8 9       0 1 2 3 4 5 6 7 8 9
+Brady |  0 X X X X X o ~ ~ ~ ~     0 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  1 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     1 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  3 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     3 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  4 ~ ~ ~ ~ S ~ ~ S ~ ~     4 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  5 ~ ~ S S S ~ ~ S ~ ~     5 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  6 ~ ~ ~ ~ S ~ ~ S ~ ~     6 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  7 ~ ~ ~ ~ S S ~ ~ ~ ~     7 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  8 ~ ~ ~ ~ ~ S ~ ~ ~ ~     8 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  9 ~ ~ ~ ~ ~ S ~ ~ ~ ~     9 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady | Legend: S your ship, X hit, o miss, ~ water
+Brady | Score  You: 0  Alex: 5   Ships left  You: 4  Alex: 5
+Brady | >>> Your Turn: enter 'row col' (example: 3 4), or 'quit' to forfeit
+Alex | 
+Alex | [SHOT] You fired at (0, 5): MISS
+Alex | 
+Alex | YOUR FLEET                 ENEMY WATERS
+Alex |    0 1 2 3 4 5 6 7 8 9       0 1 2 3 4 5 6 7 8 9
+Alex |  0 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     0 X X X X X o ~ ~ ~ ~
+Alex |  1 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     1 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  3 ~ ~ ~ ~ ~ ~ ~ ~ S ~     3 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  4 ~ ~ ~ ~ ~ ~ ~ ~ S ~     4 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  5 S ~ ~ S S ~ ~ ~ S ~     5 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  6 S ~ S S S ~ ~ ~ ~ ~     6 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  7 S ~ S ~ S ~ ~ ~ ~ ~     7 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  8 S ~ S ~ S ~ ~ ~ ~ ~     8 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  9 ~ ~ ~ ~ S ~ ~ ~ ~ ~     9 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex | Legend: S your ship, X hit, o miss, ~ water
+Alex | Score  You: 5  Brady: 0   Ships left  You: 5  Brady: 4
+Alex | ... Waiting for Brady (PLAYER_1) to fire...
+SERVER | [FSM] PLAYER_TURN -> EVALUATE_MOVE
+SERVER | [FSM] EVALUATE_MOVE -> PLAYER_TURN
+Brady | 
+Brady | [SHOT] You fired at (0, 0): MISS
+Brady | 
+Brady | YOUR FLEET                 ENEMY WATERS
+Brady |    0 1 2 3 4 5 6 7 8 9       0 1 2 3 4 5 6 7 8 9
+Brady |  0 X X X X X o ~ ~ ~ ~     0 o ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  1 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     1 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  3 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     3 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  4 ~ ~ ~ ~ S ~ ~ S ~ ~     4 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  5 ~ ~ S S S ~ ~ S ~ ~     5 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex | 
+Alex | [SHOT] Brady fired at (0, 0): MISS
+Alex | 
+Alex | YOUR FLEET                 ENEMY WATERS
+Alex |    0 1 2 3 4 5 6 7 8 9       0 1 2 3 4 5 6 7 8 9
+Alex |  0 o ~ ~ ~ ~ ~ ~ ~ ~ ~     0 X X X X X o ~ ~ ~ ~
+Alex |  1 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     1 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  3 ~ ~ ~ ~ ~ ~ ~ ~ S ~     3 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  4 ~ ~ ~ ~ ~ ~ ~ ~ S ~     4 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  5 S ~ ~ S S ~ ~ ~ S ~     5 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  6 S ~ S S S ~ ~ ~ ~ ~     6 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  6 ~ ~ ~ ~ S ~ ~ S ~ ~     6 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  7 ~ ~ ~ ~ S S ~ ~ ~ ~     7 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  8 ~ ~ ~ ~ ~ S ~ ~ ~ ~     8 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady |  9 ~ ~ ~ ~ ~ S ~ ~ ~ ~     9 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Brady | Legend: S your ship, X hit, o miss, ~ water
+Brady | Score  You: 0  Alex: 5   Ships left  You: 4  Alex: 5
+Brady | ... Waiting for Alex (PLAYER_2) to fire...
+Alex |  7 S ~ S ~ S ~ ~ ~ ~ ~     7 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  8 S ~ S ~ S ~ ~ ~ ~ ~     8 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex |  9 ~ ~ ~ ~ S ~ ~ ~ ~ ~     9 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+Alex | Legend: S your ship, X hit, o miss, ~ water
+Alex | Score  You: 5  Brady: 0   Ships left  You: 5  Brady: 4
+Alex | >>> Your Turn: enter 'row col' (example: 3 4), or 'quit' to forfeit
+
+... (rest of the game omitted) ...
+
+SERVER | [FSM] EVALUATE_MOVE -> GAME_OVER
+SERVER | [FSM] GAME_OVER -> CLEANUP
+SERVER | [FSM] CLEANUP -> WAITING_FOR_PLAYERS
+Alex | [GAME OVER] WIN: You lost. (All PLAYER_2 ships sunk)
+Alex | Final scores  PLAYER_1: 17  PLAYER_2: 16
+Alex | Leaderboard (rounds won): {'Brady': 1}
+Brady | [GAME OVER] WIN: YOU WIN! (All PLAYER_2 ships sunk)
+Brady | Final scores  PLAYER_1: 17  PLAYER_2: 16
+Brady | Leaderboard (rounds won): {'Brady': 1}
