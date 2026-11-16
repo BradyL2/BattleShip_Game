@@ -375,20 +375,25 @@ class GameServer:
             self.send_error(session, "NOT_YOUR_TURN",
                             f"It is {self.turn}'s turn")
             return
+        # EVALUATE_MOVE: check the coordinates, then mark the shot
+        self.set_state("EVALUATE_MOVE")
         row = message["payload"].get("row")
         col = message["payload"].get("col")
         if type(row) is not int or type(col) is not int or \
                 row < 0 or row >= BOARD_SIZE or col < 0 or col >= BOARD_SIZE:
             self.send_error(session, "INVALID_COORDINATES",
                             "row and col must be integers from 0 to 9")
+            self.set_state("PLAYER_TURN")
             return
         target = self.opponent(session.role)
         if self.shots[target][row][col] != ".":
             self.send_error(session, "ALREADY_FIRED",
                             f"({row}, {col}) was already fired at")
+            self.set_state("PLAYER_TURN")
             return
-        self.set_state("EVALUATE_MOVE")
         result, sunk_name = self.fire(target, row, col)
+        # CHECK_WIN_DRAW: decide if the game is over and whose turn is next
+        self.set_state("CHECK_WIN_DRAW")
         if result == "MISS":
             self.turn = target
         self.turn_started = time.time()
